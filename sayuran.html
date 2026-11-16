@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viggie slash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game"></canvas>
+  <div class="knife" id="knife">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="10,50 65,20 90,45 40,60" fill="#e7e7e7" stroke="#9aa0a6" stroke-width="2"/>
+      <polygon points="10,50 65,20 62,32 20,58" fill="#ffffff" opacity="0.6"/>
+      <rect x="55" y="52" width="34" height="12" rx="5" transform="rotate(35 55 52)" fill="#5b3a29"/>
+    </svg>
+  </div>
+
+  <div class="hud">
+    <div class="hearts" id="heartsBox"></div>
+    <div class="score-box">Skor: <span id="scoreVal">0</span></div>
+  </div>
+
+  <!-- MAIN MENU -->
+  <div class="overlay" id="menuOverlay">
+    <div class="panel">
+      <h1>🥕 Viggie slash 🔪</h1>
+      <p class="sub">Iris sayurnya, hindari bomnya!</p>
+      <p class="device-sub" id="deviceHint">Mendeteksi perangkat...</p>
+      <button class="btn" id="btnPlay">▶ Main</button>
+      <button class="btn secondary" id="btnHow">📖 Cara Bermain</button>
+    </div>
+  </div>
+
+  <!-- HOW TO PLAY -->
+  <div class="overlay hidden" id="howOverlay">
+    <div class="panel">
+      <h2>Cara Bermain</h2>
+      <ul class="rules">
+        <li><span class="ico" id="controlIco">🖱️</span><div id="controlText">Gesekkan kursor melewati sayuran untuk mengirisnya dengan <b>pisau</b>.</div></li>
+        <li><span class="ico">🥕🥦🌽</span><div>Sayuran muncul dari <b>segala arah</b> — atas, bawah, kiri, dan kanan. Tiap jenis sayur punya <b>skor berbeda</b>: Tomat 5, Wortel/Terong/Timun 10, Brokoli/Jagung 15, Kubis 20.</div></li>
+        <li><span class="ico">💣</span><div><b>Bom asli</b> — bulat hitam dengan sumbu menyala. Jangan sampai teriris!</div></li>
+        <li><span class="ico"><span class="trapdemo">🥕</span></span><div><b>Bom jebakan</b> — <b>menyamar persis seperti sayuran asli</b> (bentuknya sama!), tapi warnanya <b>gelap/hitam pekat</b>. Perhatikan baik-baik warnanya sebelum mengiris, jangan tertipu!</div></li>
+        <li><span class="ico">❤️</span><div>Kamu punya <b>5 nyawa (hati)</b>. Setiap kena bom atau bom jebakan, satu hati hilang.</div></li>
+        <li><span class="ico">⚠️</span><div>Saat hati tersisa <b>1</b>, permainan berhenti sebentar dan kamu memilih: <b>lanjut dengan 1 hati</b>, atau <b>jawab pertanyaan</b> untuk kesempatan mendapat hati tambahan.</div></li>
+        <li><span class="ico">💀</span><div>Jika hati habis (0), permainan berakhir. Kumpulkan skor setinggi mungkin!</div></li>
+      </ul>
+      <button class="btn" id="btnBackToMenu">Kembali</button>
+      <button class="btn secondary" id="btnHowPlay">▶ Main Sekarang</button>
+    </div>
+  </div>
+
+  <!-- LAST HEART CHOICE -->
+  <div class="overlay hidden" id="lastHeartOverlay">
+    <div class="panel">
+      <h2>❤️ Tinggal Satu Hati!</h2>
+      <p style="margin:0 0 20px;font-weight:600;">Sekali lagi kena bom, permainan selesai. Mau lanjut apa adanya, atau coba jawab pertanyaan untuk peluang tambah hati?</p>
+      <button class="btn" id="btnContinue1">Lanjutkan (1 Hati)</button>
+      <button class="btn secondary" id="btnAnswerQ">❓ Jawab Pertanyaan</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="overlay hidden" id="quizOverlay">
+    <div class="panel">
+      <h2 id="quizQ">Pertanyaan</h2>
+      <div id="quizOpts"></div>
+    </div>
+  </div>
+
+  <!-- GAME OVER -->
+  <div class="overlay hidden" id="overOverlay">
+    <div class="panel">
+      <h1 style="font-size:30px;">💀 Game Selesai</h1>
+      <p class="sub" id="finalScore">Skor akhir: 0</p>
+      <button class="btn" id="btnRestart">🔁 Main Lagi</button>
+      <button class="btn secondary" id="btnMenu2">🏠 Menu</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
